@@ -1,0 +1,150 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header';
+---
+
+<MainLayout
+    title="Política de Privacidad | ClassicCar Experience"
+    description="Política de privacidad de ClassicCar Experience."
+>
+
+    <Header client:load />
+
+    <main class="pt-24">
+
+        <section class="border-b-4 border-[var(--color-border)] bg-[var(--color-background)] px-4 py-20 md:px-8">
+
+            <div class="mx-auto max-w-4xl">
+
+                <span class="font-black uppercase text-[var(--color-primary-light)]">
+                    Protección de datos
+                </span>
+
+                <h1 class="mt-3 text-5xl font-black uppercase md:text-7xl">
+                    Política de Privacidad
+                </h1>
+
+                <p class="mt-6 text-lg font-medium leading-relaxed">
+                    Información sobre la recopilación, utilización
+                    y protección de los datos proporcionados por
+                    los usuarios de ClassicCar Experience.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="bg-white px-4 py-16 md:px-8">
+
+            <div class="mx-auto max-w-4xl space-y-8">
+
+                <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-6 md:p-8">
+
+                    <h2 class="text-2xl font-black uppercase">
+                        1. Introducción
+                    </h2>
+
+                    <p class="mt-4 font-medium leading-relaxed">
+                        En ClassicCar Experience nos comprometemos
+                        a proteger la privacidad y seguridad de los
+                        datos personales proporcionados por nuestros
+                        visitantes y participantes.
+                    </p>
+
+                </article>
+
+
+                <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-6 md:p-8">
+
+                    <h2 class="text-2xl font-black uppercase">
+                        2. Información recopilada
+                    </h2>
+
+                    <p class="mt-4 font-medium leading-relaxed">
+                        Para el registro al evento podemos solicitar
+                        nombre completo y correo electrónico.
+                    </p>
+
+                </article>
+
+
+                <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-6 md:p-8">
+
+                    <h2 class="text-2xl font-black uppercase">
+                        3. Uso de la información
+                    </h2>
+
+                    <p class="mt-4 font-medium leading-relaxed">
+                        La información será utilizada para gestionar
+                        registros y comunicar información relacionada
+                        con ClassicCar Experience.
+                    </p>
+
+                </article>
+
+
+                <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-6 md:p-8">
+
+                    <h2 class="text-2xl font-black uppercase">
+                        4. Protección de datos
+                    </h2>
+
+                    <p class="mt-4 font-medium leading-relaxed">
+                        Aplicamos medidas técnicas y administrativas
+                        razonables para proteger la información
+                        almacenada.
+                    </p>
+
+                </article>
+
+
+                <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-6 md:p-8">
+
+                    <h2 class="text-2xl font-black uppercase">
+                        5. Contacto
+                    </h2>
+
+                    <p class="mt-4 font-medium leading-relaxed">
+                        Para cualquier consulta relacionada con la
+                        privacidad de los datos, el usuario podrá
+                        comunicarse con ClassicCar Experience.
+                    </p>
+
+                </article>
+
+
+                <a
+                    href="/"
+                    class="inline-block border-4 border-[var(--color-border)] bg-[var(--color-primary)] px-6 py-4 font-black uppercase text-white shadow-[7px_7px_0_var(--color-border)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+                >
+                    ← Regresar al inicio
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="border-t-4 border-[var(--color-border)] bg-[var(--color-primary-dark)] px-4 py-12 text-white md:px-8">
+
+        <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+
+            <h2 class="text-2xl font-black uppercase">
+                ClassicCar Experience
+            </h2>
+
+            <a
+                href="/politicas-privacidad/"
+                class="font-black uppercase underline underline-offset-4"
+            >
+                Política de Privacidad
+            </a>
+
+        </div>
+
+    </footer>
+
+</MainLayout>

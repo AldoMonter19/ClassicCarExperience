@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = 'ClassicCar Experience 2026'
+} = Astro.props;
+---
+
+<!doctype html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>{title}</title>
+
+    <meta
+        name="description"
+        content={description}
+    />
+
+    <link
+        rel="icon"
+        href="/favicon.webp"
+    />
+
+</head>
+
+<body class="min-h-screen bg-[var(--color-background)] text-[var(--color-text)]">
+
+    <slot />
+
+</body>
+
+</html>
