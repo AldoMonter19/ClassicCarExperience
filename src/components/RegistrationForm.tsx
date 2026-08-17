@@ -1,26 +1,30 @@
-import { useState } from 'react';
+import {
+    useState,
+    type FormEvent,
+    type ReactElement,
+} from 'react';
+
+interface RegistrationFormProps {
+    title?: string;
+    description?: string;
+}
 
 interface FormData {
-    nombre: string;
-    correo: string;
+    name: string;
+    email: string;
 }
 
-interface FormErrors {
-    nombre?: string;
-    correo?: string;
-}
-
-export default function RegistrationForm(): React.ReactElement {
+export default function RegistrationForm({
+    title = 'Reserva tu lugar ahora',
+    description = 'Regístrate gratuitamente y recibe toda la información del evento.',
+}: RegistrationFormProps): ReactElement {
 
     const [formData, setFormData] = useState<FormData>({
-        nombre: '',
-        correo: '',
+        name: '',
+        email: '',
     });
 
-    const [errors, setErrors] = useState<FormErrors>({});
-
-    const [submitted, setSubmitted] =
-        useState<boolean>(false);
+    const [message, setMessage] = useState<string>('');
 
     const handleChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -28,123 +32,121 @@ export default function RegistrationForm(): React.ReactElement {
 
         const { name, value } = event.target;
 
-        setFormData((previous: FormData) => ({
-            ...previous,
+        setFormData((previousData) => ({
+            ...previousData,
             [name]: value,
         }));
-
-    };
-
-    const validate = (): boolean => {
-
-        const newErrors: FormErrors = {};
-
-        if (formData.nombre.trim().length < 5) {
-            newErrors.nombre =
-                'Ingresa tu nombre completo.';
-        }
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.correo)) {
-            newErrors.correo =
-                'Ingresa un correo válido.';
-        }
-
-        setErrors(newErrors);
-
-        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = (
-        event: React.FormEvent<HTMLFormElement>
+        event: FormEvent<HTMLFormElement>
     ): void => {
 
         event.preventDefault();
 
-        if (!validate()) {
-            return;
-        }
+        setMessage(
+            `Gracias ${formData.name}. Tu registro ha sido recibido.`
+        );
 
-        setSubmitted(true);
-
+        setFormData({
+            name: '',
+            email: '',
+        });
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="border-4 border-[var(--color-border)] bg-white p-6 shadow-[8px_8px_0_var(--color-border)] md:p-8"
+        <section
+            id="registro"
+            className="border-y-4 border-[var(--color-border)] bg-[var(--color-primary)] px-4 py-16 text-white sm:px-6 lg:px-8"
         >
 
-            <div className="grid gap-6">
+            <div className="mx-auto max-w-3xl">
 
-                <div>
+                <div className="border-4 border-white bg-[var(--color-primary-dark)] p-6 shadow-[8px_8px_0_white] sm:p-10">
 
-                    <label
-                        htmlFor="nombre"
-                        className="mb-2 block font-black uppercase"
-                    >
-                        Nombre completo
-                    </label>
+                    <div className="mb-8 text-center">
 
-                    <input
-                        id="nombre"
-                        name="nombre"
-                        type="text"
-                        value={formData.nombre}
-                        onChange={handleChange}
-                        className="w-full border-4 border-[var(--color-border)] bg-[var(--color-background)] p-4 font-bold outline-none focus:bg-[var(--color-accent)]"
-                    />
+                        <h2 className="text-3xl font-black uppercase sm:text-4xl">
+                            {title}
+                        </h2>
 
-                    {errors.nombre && (
-                        <p className="mt-2 font-bold text-red-700">
-                            {errors.nombre}
+                        <p className="mt-4 font-medium">
+                            {description}
                         </p>
-                    )}
 
-                </div>
-
-                <div>
-
-                    <label
-                        htmlFor="correo"
-                        className="mb-2 block font-black uppercase"
-                    >
-                        Correo electrónico
-                    </label>
-
-                    <input
-                        id="correo"
-                        name="correo"
-                        type="email"
-                        value={formData.correo}
-                        onChange={handleChange}
-                        className="w-full border-4 border-[var(--color-border)] bg-[var(--color-background)] p-4 font-bold outline-none focus:bg-[var(--color-accent)]"
-                    />
-
-                    {errors.correo && (
-                        <p className="mt-2 font-bold text-red-700">
-                            {errors.correo}
-                        </p>
-                    )}
-
-                </div>
-
-                <button
-                    type="submit"
-                    className="border-4 border-[var(--color-border)] bg-[var(--color-primary)] px-6 py-4 font-black uppercase text-white shadow-[7px_7px_0_var(--color-border)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-                >
-                    Registrarme
-                </button>
-
-                {submitted && (
-
-                    <div className="border-4 border-[var(--color-border)] bg-[var(--color-success)] p-4 font-black text-white">
-                        Registro validado correctamente.
                     </div>
 
-                )}
+                    <form
+                        onSubmit={handleSubmit}
+                        className="space-y-5"
+                    >
+
+                        <div>
+
+                            <label
+                                htmlFor="name"
+                                className="mb-2 block font-black uppercase"
+                            >
+                                Nombre completo
+                            </label>
+
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                value={formData.name}
+                                onChange={handleChange}
+                                placeholder="Nombre completo"
+                                required
+                                className="w-full border-4 border-white bg-white p-4 font-bold text-[var(--color-text)] outline-none focus:border-[var(--color-accent)]"
+                            />
+
+                        </div>
+
+                        <div>
+
+                            <label
+                                htmlFor="email"
+                                className="mb-2 block font-black uppercase"
+                            >
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="correo@ejemplo.com"
+                                required
+                                className="w-full border-4 border-white bg-white p-4 font-bold text-[var(--color-text)] outline-none focus:border-[var(--color-accent)]"
+                            />
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full border-4 border-white bg-[var(--color-accent)] p-4 font-black uppercase text-[var(--color-border)] shadow-[6px_6px_0_white] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0_white]"
+                        >
+                            Registrarme
+                        </button>
+
+                    </form>
+
+                    {message && (
+                        <p
+                            className="mt-6 border-4 border-white bg-white p-4 text-center font-black text-[var(--color-text)]"
+                            role="status"
+                        >
+                            {message}
+                        </p>
+                    )}
+
+                </div>
 
             </div>
 
-        </form>
+        </section>
     );
 }
