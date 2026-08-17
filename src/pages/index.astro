@@ -3,8 +3,12 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import FeatureCard from '../components/FeatureCard';
 import RegistrationForm from '../components/RegistrationForm';
+
+import Countdown from '../components/Countdown';
+import Stats from '../components/Stats';
+import FAQ from '../components/FAQ';
+import ScrollTop from '../components/ScrollTop';
 ---
 
 <MainLayout
@@ -12,7 +16,7 @@ import RegistrationForm from '../components/RegistrationForm';
     description="Evento internacional de automóviles clásicos."
 >
 
-    <Header client:load />
+    <Header />
 
     <main>
 
@@ -25,48 +29,221 @@ import RegistrationForm from '../components/RegistrationForm';
             image="/images/classic-car.webp"
         />
 
-        <!-- EVENTO -->
+        <Countdown
+            client:load
+            targetDate="2026-11-14T09:00:00-06:00"
+        />
+
+        <!-- Vehicles -->
 
         <section
-            id="evento"
-            class="border-b-4 border-[var(--color-border)] bg-white px-4 py-16 md:px-8 md:py-24"
+            id="vehiculos"
+            class="bg-[var(--color-background)] px-4 py-16 sm:px-6 lg:px-8"
         >
 
-            <div class="mx-auto max-w-7xl">
+            <div class="mx-auto max-w-6xl">
 
-                <div class="mb-10 max-w-3xl">
+                <div class="mb-10 text-center">
 
-                    <span class="font-black uppercase text-[var(--color-primary-light)]">
-                        Sobre el evento
+                    <span class="font-bold uppercase tracking-widest text-[var(--color-primary)]">
+                        Vehículos destacados
                     </span>
 
-                    <h2 class="mt-2 text-4xl font-black uppercase md:text-6xl">
-                        Una experiencia inolvidable
+                    <h2 class="mt-2 text-3xl font-black uppercase sm:text-4xl">
+                        Joyas automotrices
                     </h2>
 
                 </div>
 
-                <div class="grid gap-8 md:grid-cols-2">
+                <div class="grid gap-6 md:grid-cols-3">
 
-                    <img
-                        src="/images/about.webp"
-                        alt="Classic Car Experience"
-                        class="w-full border-4 border-[var(--color-border)]"
-                    />
+                    <article class="border-4 border-[var(--color-border)] bg-white shadow-[7px_7px_0_var(--color-border)]">
 
-                    <div class="flex flex-col justify-center">
+                        <img
+                            src="/images/car1.webp"
+                            alt="Ford Mustang 1967"
+                            class="h-64 w-full object-cover"
+                        />
 
-                        <p class="text-lg font-medium leading-relaxed">
-                            Classic Car Experience reúne a los mejores
-                            coleccionistas del país en un evento dedicado
-                            a preservar la historia automotriz.
+                        <div class="p-5">
+
+                            <h3 class="text-xl font-black uppercase">
+                                Ford Mustang 1967
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+                    <article class="border-4 border-[var(--color-border)] bg-white shadow-[7px_7px_0_var(--color-border)]">
+
+                        <img
+                            src="/images/car2.webp"
+                            alt="Chevrolet Bel Air 1957"
+                            class="h-64 w-full object-cover"
+                        />
+
+                        <div class="p-5">
+
+                            <h3 class="text-xl font-black uppercase">
+                                Chevrolet Bel Air 1957
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+                    <article class="border-4 border-[var(--color-border)] bg-white shadow-[7px_7px_0_var(--color-border)]">
+
+                        <img
+                            src="/images/car3.webp"
+                            alt="Volkswagen Sedán 1963"
+                            class="h-64 w-full object-cover"
+                        />
+
+                        <div class="p-5">
+
+                            <h3 class="text-xl font-black uppercase">
+                                Volkswagen Sedán 1963
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Gallery -->
+
+        <section
+            id="galeria"
+            class="bg-white px-4 py-16 sm:px-6 lg:px-8"
+        >
+
+            <div class="mx-auto max-w-6xl">
+
+                <div class="mb-10 text-center">
+
+                    <span class="font-bold uppercase tracking-widest text-[var(--color-primary)]">
+                        Galería
+                    </span>
+
+                    <h2 class="mt-2 text-3xl font-black uppercase sm:text-4xl">
+                        Revive las mejores ediciones
+                    </h2>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+
+                    {
+                        [
+                            'gallery1.webp',
+                            'gallery2.webp',
+                            'gallery3.webp',
+                            'gallery4.webp',
+                            'gallery5.webp',
+                            'gallery6.webp',
+                        ].map((image, index) => (
+
+                            <img
+                                src={`/images/${image}`}
+                                alt={`Galería ClassicCar Experience ${index + 1}`}
+                                class="h-48 w-full border-4 border-[var(--color-border)] object-cover sm:h-64"
+                            />
+
+                        ))
+                    }
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Agenda -->
+
+        <section
+            id="agenda"
+            class="bg-[var(--color-background)] px-4 py-16 sm:px-6 lg:px-8"
+        >
+
+            <div class="mx-auto max-w-4xl">
+
+                <div class="mb-10 text-center">
+
+                    <span class="font-bold uppercase tracking-widest text-[var(--color-primary)]">
+                        Agenda
+                    </span>
+
+                    <h2 class="mt-2 text-3xl font-black uppercase sm:text-4xl">
+                        Programa del evento
+                    </h2>
+
+                </div>
+
+                <div class="space-y-4">
+
+                    <div class="grid border-4 border-[var(--color-border)] bg-white sm:grid-cols-[150px_1fr]">
+
+                        <strong class="border-b-4 border-[var(--color-border)] bg-[var(--color-primary)] p-5 text-white sm:border-b-0 sm:border-r-4">
+                            09:00
+                        </strong>
+
+                        <p class="p-5 font-bold">
+                            Registro de asistentes
                         </p>
 
-                        <p class="mt-5 text-lg font-medium leading-relaxed">
-                            Durante todo el día podrás admirar automóviles
-                            perfectamente restaurados, convivir con expertos,
-                            participar en concursos y disfrutar actividades
-                            para toda la familia.
+                    </div>
+
+                    <div class="grid border-4 border-[var(--color-border)] bg-white sm:grid-cols-[150px_1fr]">
+
+                        <strong class="border-b-4 border-[var(--color-border)] bg-[var(--color-primary)] p-5 text-white sm:border-b-0 sm:border-r-4">
+                            10:00
+                        </strong>
+
+                        <p class="p-5 font-bold">
+                            Inauguración
+                        </p>
+
+                    </div>
+
+                    <div class="grid border-4 border-[var(--color-border)] bg-white sm:grid-cols-[150px_1fr]">
+
+                        <strong class="border-b-4 border-[var(--color-border)] bg-[var(--color-primary)] p-5 text-white sm:border-b-0 sm:border-r-4">
+                            11:30
+                        </strong>
+
+                        <p class="p-5 font-bold">
+                            Exhibición de automóviles
+                        </p>
+
+                    </div>
+
+                    <div class="grid border-4 border-[var(--color-border)] bg-white sm:grid-cols-[150px_1fr]">
+
+                        <strong class="border-b-4 border-[var(--color-border)] bg-[var(--color-primary)] p-5 text-white sm:border-b-0 sm:border-r-4">
+                            14:00
+                        </strong>
+
+                        <p class="p-5 font-bold">
+                            Concurso de restauración
+                        </p>
+
+                    </div>
+
+                    <div class="grid border-4 border-[var(--color-border)] bg-white sm:grid-cols-[150px_1fr]">
+
+                        <strong class="border-b-4 border-[var(--color-border)] bg-[var(--color-primary)] p-5 text-white sm:border-b-0 sm:border-r-4">
+                            17:00
+                        </strong>
+
+                        <p class="p-5 font-bold">
+                            Premiación
                         </p>
 
                     </div>
@@ -75,111 +252,74 @@ import RegistrationForm from '../components/RegistrationForm';
 
             </div>
 
-        </section>
+        </section>        
 
+        <Stats
+            client:load
+            stats={[
+                {
+                    label: 'Automóviles',
+                    target: 250,
+                },
+                {
+                    label: 'Visitantes',
+                    target: 5000,
+                    suffix: '+',
+                },
+                {
+                    label: 'Expositores',
+                    target: 45,
+                },
+                {
+                    label: 'Años del evento',
+                    target: 15,
+                },
+            ]}
+        />
 
-        <!-- FEATURES -->
+        <!-- Testimonials -->
 
-        <section
-            class="border-b-4 border-[var(--color-border)] bg-[var(--color-background)] px-4 py-16 md:px-8 md:py-24"
-        >
+        <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
 
-            <div class="mx-auto max-w-7xl">
+            <div class="mx-auto max-w-6xl">
 
-                <div class="mb-10">
+                <div class="mb-10 text-center">
 
-                    <span class="font-black uppercase text-[var(--color-primary-light)]">
-                        ¿Qué encontrarás?
+                    <span class="font-bold uppercase tracking-widest text-[var(--color-primary)]">
+                        Testimonios
                     </span>
 
-                    <h2 class="mt-2 text-4xl font-black uppercase md:text-6xl">
-                        Mucho más que una exhibición
+                    <h2 class="mt-2 text-3xl font-black uppercase sm:text-4xl">
+                        Lo que opinan nuestros visitantes
                     </h2>
 
                 </div>
 
-                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="grid gap-6 md:grid-cols-2">
 
-                    <FeatureCard
-                        title="Vehículos clásicos"
-                        description="Más de 250 automóviles restaurados."
-                        icon="🚘"
-                    />
+                    <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-8 shadow-[7px_7px_0_var(--color-border)]">
 
-                    <FeatureCard
-                        title="Concurso"
-                        description="Premiación al mejor vehículo clásico."
-                        icon="🏆"
-                    />
+                        <p class="text-lg font-bold">
+                            "Una experiencia extraordinaria para toda la familia."
+                        </p>
 
-                    <FeatureCard
-                        title="Música en vivo"
-                        description="Bandas durante todo el evento."
-                        icon="🎸"
-                    />
+                        <h4 class="mt-6 font-black uppercase">
+                            — Carlos Mendoza
+                        </h4>
 
-                    <FeatureCard
-                        title="Food Zone"
-                        description="Gastronomía para todos los gustos."
-                        icon="🍔"
-                    />
+                    </article>
 
-                </div>
+                    <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] p-8 shadow-[7px_7px_0_var(--color-border)]">
 
-            </div>
+                        <p class="text-lg font-bold">
+                            "Los mejores vehículos clásicos que he visto en México."
+                        </p>
 
-        </section>
+                        <h4 class="mt-6 font-black uppercase">
+                            — Laura Hernández
+                        </h4>
 
-
-        <!-- VEHÍCULOS -->
-
-        <section
-            id="vehiculos"
-            class="border-b-4 border-[var(--color-border)] bg-white px-4 py-16 md:px-8 md:py-24"
-        >
-
-            <div class="mx-auto max-w-7xl">
-
-                <span class="font-black uppercase text-[var(--color-primary-light)]">
-                    Vehículos destacados
-                </span>
-
-                <h2 class="mt-2 text-4xl font-black uppercase md:text-6xl">
-                    Joyas automotrices
-                </h2>
-
-                <div class="mt-10 grid gap-8 md:grid-cols-3">
-
-                    {[
-                        {
-                            image: '/images/car1.webp',
-                            title: 'Ford Mustang 1967'
-                        },
-                        {
-                            image: '/images/car2.webp',
-                            title: 'Chevrolet Bel Air 1957'
-                        },
-                        {
-                            image: '/images/car3.webp',
-                            title: 'Volkswagen Sedán 1963'
-                        }
-                    ].map((car) => (
-
-                        <article class="border-4 border-[var(--color-border)] bg-[var(--color-background)] shadow-[8px_8px_0_var(--color-border)]">
-
-                            <img
-                                src={car.image}
-                                alt={car.title}
-                                class="aspect-video w-full object-cover"
-                            />
-
-                            <h3 class="border-t-4 border-[var(--color-border)] p-5 text-xl font-black uppercase">
-                                {car.title}
-                            </h3>
-
-                        </article>
-
-                    ))}
+                    </article>
 
                 </div>
 
@@ -187,69 +327,115 @@ import RegistrationForm from '../components/RegistrationForm';
 
         </section>
 
+        <!-- Sponsors -->
 
-        <!-- REGISTRO -->
+        <section class="bg-[var(--color-surface-dark)] px-4 py-16 text-white sm:px-6 lg:px-8">
 
-        <section
-            id="registro"
-            class="border-b-4 border-[var(--color-border)] bg-[var(--color-accent)] px-4 py-16 md:px-8 md:py-24"
-        >
+            <div class="mx-auto max-w-6xl">
 
-            <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
+                <div class="mb-10 text-center">
+
+                    <span class="font-bold uppercase tracking-widest text-[var(--color-accent)]">
+                        Patrocinadores
+                    </span>
+
+                    <h2 class="mt-2 text-3xl font-black uppercase sm:text-4xl">
+                        Empresas participantes
+                    </h2>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+
+                    {
+                        [
+                            'logo1.webp',
+                            'logo2.webp',
+                            'logo3.webp',
+                            'logo4.webp',
+                            'logo5.webp',
+                        ].map((logo, index) => (
+
+                            <div class="flex h-32 items-center justify-center border-4 border-white bg-white p-5">
+
+                                <img
+                                    src={`/images/${logo}`}
+                                    alt={`Patrocinador ${index + 1}`}
+                                    class="max-h-20 object-contain"
+                                />
+
+                            </div>
+
+                        ))
+                    }
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <FAQ
+            client:visible
+            items={[
+                {
+                    question: '¿El acceso tiene costo?',
+                    answer: 'Sí, el acceso es gratuito con registro previo.',
+                },
+                {
+                    question: '¿Existe estacionamiento?',
+                    answer: 'Sí, el recinto cuenta con estacionamiento.',
+                },
+                {
+                    question: '¿Puedo exhibir mi automóvil?',
+                    answer: 'Sí, mediante registro previo como expositor.',
+                },
+            ]}
+        />
+
+        <RegistrationForm client:load />
+
+    </main>
+
+    <a
+        href="https://wa.me/525537837427"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+        class="fixed bottom-6 left-6 z-50 flex h-14 w-14 items-center justify-center border-4 border-[var(--color-border)] bg-[#25D366] text-2xl text-white shadow-[5px_5px_0_var(--color-border)]"
+    >
+        ☎
+    </a>
+
+    <ScrollTop client:load />
+
+    <!-- FOOTER -->
+
+        <footer class="bg-[var(--color-primary-dark)] px-4 py-12 text-white md:px-8">
+
+            <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
 
                 <div>
 
-                    <span class="font-black uppercase">
-                        Registro gratuito
-                    </span>
-
-                    <h2 class="mt-3 text-4xl font-black uppercase md:text-6xl">
-                        Reserva tu lugar
+                    <h2 class="text-2xl font-black uppercase">
+                        Classic Car Experience
                     </h2>
 
-                    <p class="mt-5 max-w-xl text-lg font-medium">
-                        Regístrate y recibe toda la información
-                        relacionada con ClassicCar Experience 2026.
+                    <p class="mt-2 font-medium">
+                        © 2026 Todos los derechos reservados.
                     </p>
 
                 </div>
 
-                <RegistrationForm client:load />
+                <a
+                    href="/politicas-privacidad/"
+                    class="font-black uppercase underline underline-offset-4"
+                >
+                    Política de Privacidad
+                </a>
 
             </div>
 
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-
-    <footer class="bg-[var(--color-primary-dark)] px-4 py-12 text-white md:px-8">
-
-        <div class="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
-
-            <div>
-
-                <h2 class="text-2xl font-black uppercase">
-                    ClassicCar Experience
-                </h2>
-
-                <p class="mt-2 font-medium">
-                    © 2026 Todos los derechos reservados.
-                </p>
-
-            </div>
-
-            <a
-                href="/politicas-privacidad/"
-                class="font-black uppercase underline underline-offset-4"
-            >
-                Política de Privacidad
-            </a>
-
-        </div>
-
-    </footer>
+        </footer>
 
 </MainLayout>
